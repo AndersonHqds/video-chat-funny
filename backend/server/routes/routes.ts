@@ -22,10 +22,18 @@ export class Routes {
 
   private getToken(): void {
     this.app.post('/video/token', (req: express.Request, res: express.Response) => {
-      const identity: string = req.query.identity.toString();
-      const room: string = req.query.room.toString();
-      const token = videoToken(identity, room, config);
-      this.sendTokenResponse(token, res);
+      try {
+        if (!req.body.identity || !req.body.room) {
+          return res.status(400).send('You need to send identity and room');
+        }
+        const identity: string = req.body.identity.toString();
+        const room: string = req.body.room.toString();
+        console.log(config);
+        const token = videoToken(identity, room, config);
+        this.sendTokenResponse(token, res);
+      } catch (error) {
+        console.log(error);
+      }
     });
   }
 

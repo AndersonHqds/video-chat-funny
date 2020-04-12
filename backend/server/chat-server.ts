@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as pino from 'express-pino-logger';
+import * as cors from 'cors';
 
 export class ChatServer {
   public static readonly PORT: number = 3001;
@@ -14,20 +15,34 @@ export class ChatServer {
   }
 
   private createApp(): void {
-    this.app = express();
-    this.app.use(bodyParser.urlencoded({ extended: false }));
-    this.app.use(bodyParser.json());
-    this.app.use(pino);
+    try {
+      console.log('Firmezera');
+      this.app = express();
+      this.app.use(cors());
+      this.app.use(bodyParser.urlencoded({ extended: false }));
+      this.app.use(bodyParser.json());
+      this.app.use(pino());
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   private config(): void {
-    this.port = process.env.PORT || ChatServer.PORT;
+    try {
+      this.port = process.env.PORT || ChatServer.PORT;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   private listen(): void {
-    this.app.listen(this.port, (): void => {
-      console.log('Express server is running on localhost:3001');
-    });
+    try {
+      this.app.listen(this.port, (): void => {
+        console.log(`Express server is running on localhost:${this.port}`);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   public getApp(): express.Application {

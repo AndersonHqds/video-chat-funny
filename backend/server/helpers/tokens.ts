@@ -2,6 +2,7 @@ import * as AccessToken from 'twilio/lib/jwt/AccessToken';
 import { VideoGrant } from 'twilio/lib/jwt/AccessToken';
 
 const generateToken = (config: types.TwilioConfig): AccessToken => {
+  console.log(config);
   return new AccessToken(config.twilio.accountSid, config.twilio.apiKey, config.twilio.apiSecret);
 };
 
