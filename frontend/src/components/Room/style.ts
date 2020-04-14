@@ -10,6 +10,8 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     containerGrid: {
       background: '#ffedf4',
+      paddingTop: 50,
+      paddingBottom: 50,
     },
     iconChat: {
       fontSize: 60,
@@ -20,7 +22,8 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     roomName: {
       fontWeight: 'bold',
-      marginLeft: 10,
+      marginRight: 30,
+      color: '#FFF',
     },
     root: {
       '& > *': {

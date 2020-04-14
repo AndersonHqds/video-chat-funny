@@ -58,33 +58,32 @@ const Room: React.FC<IProps> = ({ roomName, token, handleLogout }) => {
   }, [roomName, token]);
 
   return (
-    <Container className={classes.container}>
-      <Card>
-        <Grid container className={classes.containerGrid}>
-          <Grid item xs={12} sm={6} className={classes.nameContainer}>
-            <Typography className={classes.roomName}>Room: {roomName} </Typography>
+    <>
+      <Grid container justify="flex-end" alignItems="center">
+        <Typography className={classes.roomName}>Room: {roomName} </Typography>
+        <Fab onClick={handleLogout} style={{ marginTop: '10px', marginRight: '20px' }} color="secondary">
+          <Close />
+        </Fab>
+      </Grid>
+      <Container className={classes.container}>
+        <Card>
+          <Grid
+            container
+            className={classes.containerGrid}
+            justify="space-around"
+            alignItems="center"
+            style={{ minHeight: 400 }}
+          >
+            {room ? (
+              <ParticipantComponent local key={room.localParticipant.sid} participant={room.localParticipant} />
+            ) : (
+              ''
+            )}
+            {remoteParticipants}
           </Grid>
-          <Grid item xs={12} className={classes.buttonContainer} sm={6}>
-            <Fab onClick={handleLogout} style={{ marginTop: '10px', marginRight: '10px' }} color="secondary">
-              <Close />
-            </Fab>
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          className={classes.containerGrid}
-          justify="space-around"
-          style={{ minHeight: 400, paddingBottom: '50px' }}
-        >
-          {room ? (
-            <ParticipantComponent local key={room.localParticipant.sid} participant={room.localParticipant} />
-          ) : (
-            ''
-          )}
-          {remoteParticipants}
-        </Grid>
-      </Card>
-    </Container>
+        </Card>
+      </Container>
+    </>
   );
 };
 

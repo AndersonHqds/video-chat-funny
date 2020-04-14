@@ -28,7 +28,6 @@ export class Routes {
         }
         const identity: string = req.body.identity.toString();
         const room: string = req.body.room.toString();
-        console.log(config);
         const token = videoToken(identity, room, config);
         this.sendTokenResponse(token, res);
       } catch (error) {
