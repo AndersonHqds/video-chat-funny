@@ -6,10 +6,17 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: 300,
     },
     container: {
-      paddingTop: 80,
+      paddingTop: 20,
+    },
+    containerGrid: {
+      background: '#ffedf4',
     },
     iconChat: {
       fontSize: 60,
+    },
+    nameContainer: {
+      height: 100,
+      paddingTop: 50,
     },
     roomName: {
       fontWeight: 'bold',
@@ -25,6 +32,15 @@ export const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       background: '#FFF',
       padding: 50,
+    },
+    participants: {
+      width: 300,
+      height: 300,
+    },
+    buttonContainer: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      paddingTop: 50,
     },
   }),
 );
